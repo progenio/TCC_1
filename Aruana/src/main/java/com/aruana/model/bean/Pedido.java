@@ -56,17 +56,17 @@ public class Pedido implements Serializable {
 	private StatusPedido statusPedido;
 
 	@ManyToOne
-	@JoinColumn(name = "pedcliente", nullable = false)
+	@JoinColumn(name = "pedclicodigo", nullable = false)
 	@ForeignKey(name="FK_PED_CLI")
 	private Cliente cliente;
 
 	@ManyToOne
-	@JoinColumn(name = "pedcolaborador", nullable = false)
+	@JoinColumn(name = "pedcolcodigo", nullable = false)
 	@ForeignKey(name="FK_PED_COL")
 	private Colaborador colaborador;
 
 	@ManyToOne
-	@JoinColumn(name = "pedentregador", nullable = false)
+	@JoinColumn(name = "pedentcodigo", nullable = false)
 	@ForeignKey(name="FK_PED_ENT")
 	private Entregador entregador;
 

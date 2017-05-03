@@ -1,8 +1,8 @@
 package com.aruana.model.dao;
 
-import com.aruana.model.bean.Cliente;
+import com.aruana.model.bean.Estoque;
 
-public class ClienteDAO extends GenericDAO<Cliente> {
+public class EstoqueDAO extends GenericDAO<Estoque> {
 
 	//HERDA TODAS AS IMPLEMENTAÇÕES DO GENERIC DAO
 	

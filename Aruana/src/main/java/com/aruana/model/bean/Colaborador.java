@@ -27,7 +27,7 @@ public class Colaborador implements Serializable {
 	private String nome;
 
 	@ManyToOne
-	@JoinColumn(name = "colusuario", nullable = false)
+	@JoinColumn(name = "colusucodigo", nullable = false)
 	@ForeignKey(name="FK_COL_USU")
 	private Usuario usuario;
 

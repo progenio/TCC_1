@@ -41,12 +41,12 @@ public class Estoque implements Serializable {
 	private Short quantidade;
 
 	@ManyToOne
-	@JoinColumn(name = "estdeposito", nullable = false)
+	@JoinColumn(name = "estdepcodigo", nullable = false)
 	@ForeignKey(name="FK_EST_DEP")
 	private Deposito deposito;
 
 	@ManyToOne
-	@JoinColumn(name = "estproduto", nullable = false)
+	@JoinColumn(name = "estprocodigo", nullable = false)
 	@ForeignKey(name="FK_EST_PRO")
 	private Produto produto;
 
