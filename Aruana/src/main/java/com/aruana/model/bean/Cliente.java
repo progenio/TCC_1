@@ -47,7 +47,7 @@ public class Cliente implements Serializable {
 	@ForeignKey(name="FK_CLI_USU")
 	private Usuario usuario;
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	//@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Telefone> telefones;
 
 	public Integer getCodigo() {
