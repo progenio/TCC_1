@@ -17,13 +17,13 @@ public class ClienteDAOTest {
 	//@Ignore
 	public void salvar(){
 		
-		Usuario usuario = new Usuario();
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Usuario usuario = new Usuario();		
 		
 		usuario.setSenha("12345");
 		usuario.setStatus(Status.ATIVO);
 		usuario.setTipoUsuario(TipoUsuario.CLIENTE);
 		
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.salvar(usuario);
 		/*
 		usuarioDAO.buscar(1);

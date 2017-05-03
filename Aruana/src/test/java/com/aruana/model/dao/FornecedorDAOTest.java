@@ -9,15 +9,15 @@ import com.aruana.model.bean.Fornecedor;
 
 public class FornecedorDAOTest {
 	@Test
-	@Ignore
+	//@Ignore
 	public void salvar() {
 		Fornecedor fornecedor = new Fornecedor();
 
-		fornecedor.setRazaoSocial("Minalar");
-		fornecedor.setCnpj("23.000.333/0003-33");
-		fornecedor.setVendedor("Oranilza da Silveira");
-		fornecedor.setTelefone("(92)8989-7474");
-		fornecedor.setCelular("(92)96565-1212");
+		fornecedor.setRazaoSocial("Gelocrim");
+		fornecedor.setCnpj("37.000.777/0007-77");
+		fornecedor.setVendedor("Astrogildo da Magalhães");
+		fornecedor.setTelefone("(92)7878-9696");
+		fornecedor.setCelular("(92)98585-6363");
 
 		FornecedorDAO fornecedorDAO = new FornecedorDAO();
 		fornecedorDAO.salvar(fornecedor);
