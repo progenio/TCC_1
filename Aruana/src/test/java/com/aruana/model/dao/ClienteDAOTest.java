@@ -26,7 +26,7 @@ public class ClienteDAOTest {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.salvar(usuario);
 		
-		usuario = usuarioDAO.buscar(4);
+		usuario = usuarioDAO.buscar(3);
 		System.out.println(usuario.getCodigo());
 		
 			
@@ -34,14 +34,9 @@ public class ClienteDAOTest {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		
 		Telefone telefone = new Telefone();
+		Telefone telefone1 = new Telefone();
 		TelefoneDAO telefoneDAO = new TelefoneDAO();
 		List<Telefone> telefones = new ArrayList<Telefone>();
-		
-		
-		telefone.setTelefone("(92)91111-1111");
-		telefones.add(telefone);
-		telefone.setTelefone("(92)92222-2222");
-		telefones.add(telefone);
 		
 		
 		cliente.setCpf("111.111.111-11");
@@ -49,13 +44,26 @@ public class ClienteDAOTest {
 		cliente.setRazaoSocial("nada");
 		cliente.setNome("Um Um Um");
 		cliente.setEmail("um@gmail.com");
-		cliente.setUsuario(usuario);
-		cliente.setTelefones(telefones);
+		cliente.setUsuario(usuario);		
 		
 		clienteDAO.salvar(cliente);
 		
-		cliente = clienteDAO.buscar(1);
+		cliente = clienteDAO.buscar(3);
+		
+		telefone.setTelefone("(92)91111-1111");
+		telefone.setCliente(cliente);
+		telefones.add(telefone);
+		telefone1.setTelefone("(92)92222-2222");
+		telefone1.setCliente(cliente);
+		telefones.add(telefone1);
+		
+		cliente.setTelefones(telefones);
+		
 		System.out.println(cliente.getCodigo());
+		
+		for (Telefone telefone2 : telefones) {
+			System.out.println(telefone2.getTelefone()+" - "+telefone2.getCliente().getCodigo());
+		}
 		
 		for (Telefone telefone2 : telefones) {
 			telefoneDAO.salvar(telefone2);

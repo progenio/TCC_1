@@ -27,7 +27,7 @@ public class Telefone implements Serializable {
 	private String telefone;
 
 	@ManyToOne
-	@JoinColumn(name = "telclicodigo", nullable = false)
+	@JoinColumn(name = "telclicodigo", nullable=false)
 	@ForeignKey(name = "FK_TEL_CLI")
 	private Cliente cliente;
 
