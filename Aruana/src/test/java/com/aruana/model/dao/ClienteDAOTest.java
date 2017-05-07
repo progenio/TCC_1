@@ -27,7 +27,9 @@ public class ClienteDAOTest {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		usuarioDAO.salvar(usuario);
 
-		usuario = usuarioDAO.buscar(3);
+		List<Usuario> lista = usuarioDAO.listar();
+		usuario = lista.get(lista.size() - 1);
+		
 		System.out.println(usuario.getCodigo());
 
 		Cliente cliente = new Cliente();

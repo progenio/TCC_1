@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<style>
+.noGridBorder tr, .noGridBorder td {
+	border: none !important
+}
+</style>
+	<title>Produtos</title>
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<h:form id="formLista">
+		<div align="left">
+			<p:panel header="Produtos - Listagem"
+				style="width: 98%; margin-top: 20px;">
+				<p:dataTable id="tabela" value="#{produtoController.produtos}"
+					var="produto" emptyMessage="Nenhum registro encontrado." rows="8"
+					paginator="true" paginatorAlwaysVisible="false"
+					paginatorPosition="bottom">
+
+					<f:facet name="header">
+						<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
+							actionListener="#{produtoController.novo}"
+							update=":mensagem :formCad:painel" />
+					</f:facet>
+
+					<p:column headerText="Codigo"
+						style="text-align: center;  width: 50px"
+						sortBy="#{produto.codigo}">
+						<h:outputText value="#{produto.codigo}" />
+					</p:column>
+					<p:column headerText="Nome" style="width: 200px"
+						sortBy="#{produto.nome}" filterBy="#{produto.nome}">
+						<h:outputText value="#{produto.nome}" />
+					</p:column>
+					<p:column headerText="Unidade"
+						style="text-align: center;  width: 100px">
+						<h:outputText value="#{produto.unidade}" />
+					</p:column>
+
+					<p:column headerText="Fornecedor"
+						style="text-aling: rigth; width:200px"
+						filterBy="#{produto.fornecedor.razaoSocial}">
+						<h:outputText value="#{produto.fornecedor.razaoSocial}" />
+					</p:column>
+
+					<p:column headerText="Opções"
+						style="text-aling: center; width:80px">
+						<p:commandButton icon="ui-icon-trash"
+							update=":mensagem :formLista:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir o fornecedor?" icon="ui-icon-alert" />
+							<f:attribute name="fornecedorSelecionado" value="#{fornecedor}" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-pencil"
+							update=":formLista:tabela :formCad:painel"
+							oncomplete="PF('dialogo').show();">
+
+							<f:attribute name="produtoSelecionado" value="#{produto}" />
+						</p:commandButton>
+					</p:column>
+
+
+				</p:dataTable>
+			</p:panel>
+
+		</div>
+	</h:form>
+
+	<p:dialog header="Produto - Cadastro" widgetVar="dialogo"
+		draggable="false" resizable="false" modal="true" closable="false">
+		<h:form id="formCad">
+			<p:panelGrid columns="2" id="painel">
+				<p:outputLabel value="Nome: " />
+				<p:inputText maxlength="150" size="50"
+					value="#{produtoController.produto.nome}" />
+
+				<p:outputLabel value="Unidade " />
+				<p:selectOneMenu style="width: 250px">
+					<f:selectItem noSelectionOption="true" itemLabel="Selecione a unidade" />
+					<f:selectItems value="#{produtoController.unidades}"/>
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Fornecedor: " />
+				<p:selectOneMenu style="width: 250px"
+					value="#{produtoController.produto.fornecedor}">
+					<f:selectItem noSelectionOption="true" itemLabel="Selecione o fornecedor" />
+					<f:selectItems value="#{produtoController.fornecedores}"
+						var="fornecedor" itemLabel="#{fornecedor.razaoSocial}"
+						itemValue="#{fornecedor}" />
+				</p:selectOneMenu>
+
+
+			</p:panelGrid>
+
+			<p:panelGrid columns="2" styleClass="noGridBorder">
+				<p:commandButton value="Salvar" actionListener="#{produtoController.salvar}"
+				update=":mensagem :formCad:painel :formLista:tabela"/>
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

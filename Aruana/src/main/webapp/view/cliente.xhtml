@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<style>
+.noGridBorder tr, .noGridBorder td {
+	border: none !important
+}
+</style>
+	<title>Clientes</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<div align="left">
+			<p:panel header="Clientes - Listagem"
+				style="width: 98%; margin-top: 20px;">
+				<p:dataTable id="clienteTable"
+					emptyMessage="Nenhum registro encontrado." rows="8"
+					paginator="true" paginatorAlwaysVisible="false"
+					paginatorPosition="bottom">
+
+					<f:facet name="header">
+						<p:commandButton value="Novo" oncomplete="PF('dialogo').show();" />
+					</f:facet>
+
+					<p:column headerText="Codigo"
+						style="text-align: center;  width: 50px">
+						<h:outputText />
+					</p:column>
+					<p:column headerText="Razão Social" style="width: 200px">
+						<h:outputText />
+					</p:column>
+					<p:column headerText="CNPJ"
+						style="text-align: center;  width: 100px">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="Nome" style="text-aling: rigth; width:200px">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="CPF"
+						style="text-align: center;  width: 100px">
+						<h:outputText />
+					</p:column>
+
+					<p:column headerText="E-mail"
+						style="text-align: center;  width: 100px">
+						<h:outputText />
+					</p:column>
+					<p:column headerText="Telefone"
+						style="text-aling: center; width:70px">
+						<h:outputText />
+					</p:column>
+
+				</p:dataTable>
+			</p:panel>
+
+		</div>
+	</h:form>
+
+	<p:dialog header="Cliente - Cadastro" widgetVar="dialogo"
+		draggable="true" resizable="false" modal="true" closable="false"
+		position="center center">
+		<h:form>
+			<p:tabView>
+				<p:tab title="Dados">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Tipo de Cliente: " />
+						<p:selectOneRadio>
+							<f:selectItem itemLabel="Física" />
+							<f:selectItem itemLabel="Jurídica" />
+						</p:selectOneRadio>
+
+						<p:outputLabel value="Razão Social: " />
+						<p:inputText maxlength="150" size="50" />
+						<p:outputLabel value="CNPJ: " />
+						<p:inputMask mask="99.999.999/9999-99" maxlength="18" size="20" />
+
+						<p:outputLabel value="Nome: " />
+						<p:inputText maxlength="150" size="50" />
+						<p:outputLabel value="CPF: " />
+						<p:inputMask mask="999.999.999-99" maxlength="14" size="20" />
+
+						<p:outputLabel value="E-mail " />
+						<p:password maxlength="100" size="50" />
+
+						<p:outputLabel value="Telefones: " />
+						<h:panelGroup>
+							<p:inputMask mask="(99)99999-9999" maxlength="14" size="20" />
+							<p:commandButton value="Adicionar" />
+						</h:panelGroup>
+
+					</p:panelGrid>
+				</p:tab>
+
+
+				<p:tab title="Usuario">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Login: " />
+						<p:inputText maxlength="20" size="20" />
+
+						<p:outputLabel value="Senha: " />
+						<p:password maxlength="8" size="20" />
+
+						<p:outputLabel value="Tipo usuário " />
+						<p:selectOneMenu style="width: 250px">
+							<f:selectItem itemLabel="Selecione o tipo de usuario" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+
+				</p:tab>
+
+				<p:tab title="Endereço">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="CEP:  " />
+						<h:panelGroup>
+							<p:inputMask mask="99999-999" maxlength="9" size="15" />
+							<p:outputLabel value="  " />
+							<p:commandButton value="Pesquisar" />
+						</h:panelGroup>
+
+						<p:outputLabel value="Tipo:" />
+						<p:inputText size="50" disabled="true" />
+						<p:outputLabel value="Logradouro:" />
+						<p:inputText size="50" disabled="true" />
+
+						<p:outputLabel value="Número:" />
+						<p:inputText maxlength="15" size="20" />
+						<p:outputLabel value="Bairro:" />
+						<p:inputText size="50" disabled="true" />
+
+						<p:outputLabel value="Complemento:" />
+						<p:inputText size="50" />
+						<p:outputLabel value="Refereência:" />
+						<p:inputText size="50" />
+						<p:outputLabel value="Observação:" />
+						<p:inputText size="50" />
+
+						<p:outputLabel value="Cidade:" />
+						<p:inputText size="50" disabled="true" />
+						
+
+					</p:panelGrid>
+				</p:tab>
+			</p:tabView>
+			<p:panelGrid columns="3" styleClass="noGridBorder">
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+	<!--  
+	<p:dialog header="Cliente - Cadastro" widgetVar="dialogo"
+		draggable="true" resizable="false" modal="true" closable="false">
+		<h:form>
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Razão Social: " />
+				<p:inputText maxlength="150" size="50" />
+			
+				<p:outputLabel value="CNPJ: " />
+				<p:inputMask mask="99.999.999/9999-99" maxlength="18" size="20" />
+				
+				<p:outputLabel value="Vendedor: " />
+				<p:inputText maxlength="100" size="50" />
+				
+				<p:outputLabel value="Telefone: " />
+				<p:inputMask mask="(99) 9999-9999" maxlength="14" size="20" />
+				
+				<p:outputLabel value="Celular " />
+				<p:inputMask mask="(99)99999-9999" maxlength="14" size="20" />
+				
+				
+			</p:panelGrid>
+
+			<p:panelGrid columns="3" styleClass="noGridBorder">
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+	
+	<p:dialog header="Usuario - Cadastro" widgetVar="dialogo-usu"
+		draggable="false" resizable="false" modal="true" closable="false">
+		<h:form>
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Razão Social: " />
+				<p:inputText maxlength="150" size="50" />
+			
+				<p:outputLabel value="CNPJ: " />
+				<p:inputMask mask="99.999.999/9999-99" maxlength="18" size="20" />
+				
+				<p:outputLabel value="Vendedor: " />
+				<p:inputText maxlength="100" size="50" />
+				
+				<p:outputLabel value="Telefone: " />
+				<p:inputMask mask="(99) 9999-9999" maxlength="14" size="20" />
+				
+				<p:outputLabel value="Celular " />
+				<p:inputMask mask="(99)99999-9999" maxlength="14" size="20" />
+				
+				
+			</p:panelGrid>
+
+			<p:panelGrid columns="2" styleClass="noGridBorder">
+				<p:commandButton value="Salvar" />
+				<p:commandButton value="Fechar" oncomplete="PF('dialogo-usu').hide();" />				
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+	
+	-->
+</h:body>
+</html>

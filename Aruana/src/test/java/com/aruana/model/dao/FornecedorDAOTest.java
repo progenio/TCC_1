@@ -101,4 +101,18 @@ public class FornecedorDAOTest {
 
 	}
 
+	@Test
+	@Ignore
+	public void merge() {
+		Fornecedor fornecedor = new Fornecedor();
+
+		fornecedor.setRazaoSocial("aaaaaaaaaaa");
+		fornecedor.setCnpj("11.111.111/0001-89");
+		fornecedor.setVendedor("Fabricio Castro");
+		fornecedor.setTelefone("(92)98565-7852");
+		fornecedor.setCelular("(92)91245-7863");
+
+		FornecedorDAO fornecedorDAO = new FornecedorDAO();
+		fornecedorDAO.salvar(fornecedor);
+	}
 }
